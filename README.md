@@ -80,10 +80,10 @@ Considering the following dependency graph:
 
     a,b    c,d    e,f    g
 
-Nodes a and b can be processed immediately.
-Nodes c and d can be processed as soon as node a has been processed.
-Nodes e and f can be processed as soon as node d has been processed.
-node g can be processed as soon as nodes f and b have been processed.
+- Nodes a and b can be processed immediately.
+- Nodes c and d can be processed as soon as node a has been processed.
+- Nodes e and f can be processed as soon as node d has been processed.
+- node g can be processed as soon as nodes f and b have been processed.
 
 So there are 4 steps.
 
