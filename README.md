@@ -57,53 +57,53 @@ Dependency Cycles are detected when running `dependenciesOf`, `dependantsOf`, an
 
 
 
-    ### steps() function example
+### steps() function example
 
-    One step contains the nodes that can be processed in same time.
+One step contains the nodes that can be processed in same time.
+
+Considering the following dependency graph:
+
+           c
+         /
+    a --          e
+         \      /
+           d -- 
+                \
+                  f -- 
+                       \
+                         g
+                       /
+    b ----------------
+
+    ======== steps =======
+    1      2      3      4
+
+    a,b    c,d    e,f    g
+
+Nodes a and b can be processed immediately.
+Nodes c and d can be processed as soon as node a has been processed.
+Nodes e and f can be processed as soon as node d has been processed.
+node g can be processed as soon as nodes f and b have been processed.
+
+So there are 4 steps.
+
+Code:
+
+    var graph = new DepGraph();
     
-    Considering the following dependency graph:
+    graph.addNode( 'a' );
+    graph.addNode( 'b' );
+    graph.addNode( 'c' );
+    graph.addNode( 'd' );
+    graph.addNode( 'e' );
+    graph.addNode( 'f' );
+    graph.addNode( 'g' );
 
-               c
-             /
-        a --          e
-             \      /
-               d -- 
-                    \
-                      f -- 
-                           \
-                             g
-                           /
-        b ----------------
+    graph.addDependency( 'a', 'c' );
+    graph.addDependency( 'a', 'd' );
+    graph.addDependency( 'd', 'e' );
+    graph.addDependency( 'd', 'f' );
+    graph.addDependency( 'f', 'g' );
+    graph.addDependency( 'b', 'g' );
 
-        ======== steps =======
-        1      2      3      4
-
-        a,b    c,d    e,f    g
-
-        Nodes a and b can be processed immediately.
-        Nodes c and d can be processed as soon as node a has been processed.
-        Nodes e and f can be processed as soon as node d has been processed.
-        node g can be processed as soon as nodes f and b have been processed.
-
-        So there are 4 steps.
-
-    Code:
-
-        var graph = new DepGraph();
-        
-        graph.addNode( 'a' );
-        graph.addNode( 'b' );
-        graph.addNode( 'c' );
-        graph.addNode( 'd' );
-        graph.addNode( 'e' );
-        graph.addNode( 'f' );
-        graph.addNode( 'g' );
-    
-        graph.addDependency( 'a', 'c' );
-        graph.addDependency( 'a', 'd' );
-        graph.addDependency( 'd', 'e' );
-        graph.addDependency( 'd', 'f' );
-        graph.addDependency( 'f', 'g' );
-        graph.addDependency( 'b', 'g' );
-
-        graph.steps(); // [['a', 'b'], ['c', 'd'], ['e', 'f'], ['g']]
+    graph.steps(); // [['a', 'b'], ['c', 'd'], ['e', 'f'], ['g']]
