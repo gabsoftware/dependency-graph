@@ -26,7 +26,7 @@ Nodes in the graph are just simple strings with optional data associated with th
  - `overallOrder(leavesOnly)` - construct the overall processing order for the dependency graph. If `leavesOnly` is true, only nodes that do not depend on any other nodes will be returned.
  - `steps()` - return an array of steps, the first item at index zero being an array of nodes that depends on nothing
 
-Dependency Cycles are detected when running `dependenciesOf`, `dependantsOf`, and `overallOrder` and if one is found, an error will be thrown that includes what the cycle was in the message: e.g. `Dependency Cycle Found: a -> b -> c -> a`.
+Dependency Cycles are detected when running `dependenciesOf`, `dependantsOf`, `overallOrder`, and `steps` and if one is found, an error will be thrown that includes what the cycle was in the message: e.g. `Dependency Cycle Found: a -> b -> c -> a`.
 
 ## Examples
 
