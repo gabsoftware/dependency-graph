@@ -2,6 +2,8 @@
 
 Simple dependency graph
 
+(forked from https://github.com/jriecken/dependency-graph)
+
 ## Overview
 
 This is a simple dependency graph useful for determining the order to do a list of things that depend on certain items being done before they are.
